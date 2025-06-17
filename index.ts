@@ -21,7 +21,7 @@ import write from "./src/lib/write";
     // Generate `build` object
     const build: Build = {};
 
-    build.version = await version();
+    build.version = await version(args["package-json"]);
     build.timestamp = new Date().toString();
     build.message =
         args.message || (args.message === "" ? await message() : null);
@@ -35,7 +35,7 @@ import write from "./src/lib/write";
           };
 
     // Write Build information to file
-    await write(build);
+    await write(build, args["output-file"]);
 
     console.log("");
     signale.success("Saved Build Information");

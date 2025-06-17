@@ -1,7 +1,12 @@
-const version = require(`${process.cwd()}/package.json`)?.version;
+import { promises as fs } from "fs";
 
-const getVersion = async (): Promise<string | null> => {
-    return version || null;
+const getVersion = async (path?: string): Promise<string | null> => {
+    const read = await fs.readFile(
+        path || `${process.cwd()}/package.json`,
+        { encoding: "utf-8" }
+    );
+
+    return JSON.parse(read)?.version || null;
 };
 
 export default getVersion;

@@ -25,6 +25,16 @@ const args = yargs(process.argv)
         type: "boolean",
         description: "Specify to skip git information",
     })
+    .option("package-json", {
+        alias: "p",
+        type: "string",
+        description: "Specify location of `package.json`",
+    })
+    .option("output-file", {
+        alias: "o",
+        type: "string",
+        description: "Specify location of generated `build.ts` file",
+    })
     .help().argv;
 
 export default args;
